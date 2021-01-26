@@ -56,11 +56,11 @@ const map = (collection, iterator) => {
   return result
 };
 
-
+// the reject function is performing the same task as filter but the opposite.  
 const reject = function (collection, test) {
   let result = [];
-
   filter(collection, function (element) {
+    // adding the ! before test is doing the opposite of the test/filter function
     if (!test(element)){
       result.push(element);
     }
@@ -72,6 +72,7 @@ const reject = function (collection, test) {
 const uniq = function (array) {
   let result = [];
   
+
 
 };
 const reduce = function (collection, iterator, accumulator) {};
