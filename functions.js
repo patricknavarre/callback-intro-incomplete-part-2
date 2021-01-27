@@ -36,7 +36,7 @@ const filter = function (collection, test) {
   })
   return result;
 
-
+// the long way ----
   // for (let i = 0; i < collection.length; i++) {
   //     if (test(collection[i]) % 2 === 1){
   //         result.push(collection[i]);
@@ -48,34 +48,47 @@ const filter = function (collection, test) {
 
 const map = (collection, iterator) => {
   let result = [];
-  //  loop through the collection and perform the iterator on each index
-  for (let i = 0; i < collection.length; i++) {
-    // push the result of that into the result array
-    result.push(iterator(collection[i]))
-  }
-  return result
-};
-
-// the reject function is performing the same task as filter but the opposite.  
-const reject = function (collection, test) {
-  let result = [];
-  filter(collection, function (element) {
-    // adding the ! before test is doing the opposite of the test/filter function
-    if (!test(element)){
-      result.push(element);
-    }
+  each(collection, function(item) {
+    result.push(iterator(item))
   })
-  return result;
-};
+    return result
+  }
+
+const reject = function(collection, callback) {
+    return filter(collection, function (value) {
+    return !callback(value);
+  })
+}
+
+// the long way ----
+// the reject function is performing the same task as filter but the opposite.  
+// const reject = function (collection, test) {
+//   let result = [];
+//   filter(collection, function (element) {
+//     // adding the ! before test is doing the opposite of the test/filter function
+//     if (!test(element)){
+//       result.push(element);
+//     }
+//   })
+//   return result;
+// };
 
 
 const uniq = function (array) {
   let result = [];
+
+  each(array, function (element){
+    if(!result.includes(element)){
+      result.push(element)
+    }
+  })
+  return result;
+}
   
-
-
+const reduce = function (collection, iterator, accumulator) {
+  
+  
 };
-const reduce = function (collection, iterator, accumulator) {};
 
 module.exports = {
   filter,
